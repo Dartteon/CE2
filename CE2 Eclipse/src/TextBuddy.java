@@ -191,6 +191,16 @@ public class TextBuddy{
 		return textCollage;
 	}
 	
+	ArrayList<String> searchTexts(String word){
+		ArrayList<String> linesWithSearchWord = new ArrayList<String>();
+		for (int i=0; i<textsList.size(); i++){
+			if (textsList.get(i).contains(word)){
+				linesWithSearchWord.add(textsList.get(i));
+			}
+		
+		}
+	return linesWithSearchWord;
+}
 	
 }
 
