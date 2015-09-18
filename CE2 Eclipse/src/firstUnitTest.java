@@ -109,4 +109,14 @@ public class firstUnitTest {
 		
 		assertEquals(tb.textsList, testList);
 	}
+	
+	@Test
+	public void testSortTexts3() {
+		tb.clearAll();
+		tb.sortTexts();
+		
+		ArrayList<String> testList = new ArrayList<String>();
+		
+		assertEquals(tb.textsList, testList);
+	}
 }
