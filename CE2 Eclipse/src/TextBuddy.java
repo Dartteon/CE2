@@ -50,22 +50,23 @@ public class TextBuddy{
 	}
 	
 	public static void main(String args[]){
-		Scanner sc = new Scanner(System.in);		
+		Scanner scanner = new Scanner(System.in);		
 		System.out.println(String.format(MESSAGE_WELCOME, args[POS_FIRST_LETTER]));		
 		TextBuddy textBuddy = new TextBuddy(args[POS_FIRST_LETTER]);		
 		textBuddy.loadFile();
-		textBuddy.scanInputs(sc);		
+		textBuddy.scanInputs(scanner);		
 	}
 	
 	/*Method takes in a scanner and continuously scans for input lines
 	and terminates when the method it calls returns false*/
-	private void scanInputs(Scanner sc){
+	private void scanInputs(Scanner scanner){
 		boolean isExitCalled = false;
 		while(!isExitCalled){
 			System.out.print(MESSAGE_ENTER_COMMAND);
-			String line = sc.nextLine();
-			if (!evaluateCommand(line))
+			String line = scanner.nextLine();
+			if (!evaluateCommand(line)){
 				isExitCalled = true;
+			}
 		}
 	}
 	
@@ -118,8 +119,9 @@ public class TextBuddy{
 	
 	//Method checks if list is empty, else calls list to be printed
 	void displayAll(){
-		if (textsList.isEmpty())
+		if (textsList.isEmpty()){
 			System.out.println(String.format(MESSAGE_EMPTY, fileName));
+		}
 		else{
 			printAllLines();
 		}
@@ -196,6 +198,7 @@ public class TextBuddy{
 		return textCollage;
 	}
 	
+	//Method searches all lines in textsList and returns those with specified keyword
 	ArrayList<String> searchTexts(String word){
 		ArrayList<String> linesWithSearchWord = new ArrayList<String>();
 		for (int i=0; i<textsList.size(); i++){
@@ -204,8 +207,13 @@ public class TextBuddy{
 			}
 		
 		}
-	return linesWithSearchWord;
-}
+		return linesWithSearchWord;
+	}
+	
+	//Method sorts all lines in textsLists in alphabatical order
+	void sortTexts(){
+		Collections.sort(textsList);
+	}
 	
 }
 
