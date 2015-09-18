@@ -28,7 +28,7 @@ public class firstUnitTest {
 		assertEquals(resultList, testList);
 	}
 		
-	@Test	
+	@Ignore	
 	public void testSearchTexts2() {
 		tb.addString("keyword one two three");
 		tb.addString("key word not gonna appear");
@@ -46,7 +46,7 @@ public class firstUnitTest {
 		assertEquals(resultList, testList);
 	}
 	
-	@Test	
+	@Ignore	
 	public void testSearchTexts3() {
 		tb.addString("1");
 		tb.addString("2");
@@ -59,5 +59,30 @@ public class firstUnitTest {
 		ArrayList<String> resultList = tb.searchTexts(searchWord);
 		
 		assertEquals(resultList, testList);
+	}
+	
+	
+	@Test
+	public void testSortTexts() {
+		tb.clearAll();
+		tb.addString("a line like this");
+		tb.addString("A line like this");
+		tb.addString("Z line like this");
+		tb.addString("z line like this");
+		tb.addString("1 this starts with a number");
+		tb.addString("2 ah this also starts with a number");
+		
+		tb.sortTexts();
+		
+		ArrayList<String> testList = new ArrayList<String>();
+		
+		testList.add("1 this starts with a number");
+		testList.add("2 ah this also starts with a number");
+		testList.add("A line like this");
+		testList.add("Z line like this");
+		testList.add("a line like this");
+		testList.add("z line like this");
+		
+		assertEquals(tb.textsList, testList);
 	}
 }

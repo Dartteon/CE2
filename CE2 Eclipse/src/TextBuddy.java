@@ -136,7 +136,7 @@ public class TextBuddy{
 	
 
 	//Method deletes all text currently in ArrayList then saves into file
-	private void clearAll(){
+	void clearAll(){
 		textsList.clear();		
 		System.out.println(String.format(MESSAGE_CLEAR_CONTENT, fileName));
 		saveFile();		
