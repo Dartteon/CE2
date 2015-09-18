@@ -62,7 +62,7 @@ public class firstUnitTest {
 	}
 	
 	
-	@Test
+	@Ignore
 	public void testSortTexts() {
 		tb.clearAll();
 		tb.addString("a line like this");
@@ -82,6 +82,30 @@ public class firstUnitTest {
 		testList.add("Z line like this");
 		testList.add("a line like this");
 		testList.add("z line like this");
+		
+		assertEquals(tb.textsList, testList);
+	}
+	
+	@Test
+	public void testSortTexts2() {
+		tb.clearAll();
+		tb.addString("-- weird line");
+		tb.addString("1 number");
+		tb.addString("1 numaer");
+		tb.addString("CAPS");
+		tb.addString("caps not");
+		
+		tb.sortTexts();
+		
+		ArrayList<String> testList = new ArrayList<String>();
+		
+		testList.add("-- weird line");
+		testList.add("1 numaer");
+		testList.add("1 number");
+		testList.add("CAPS");
+		testList.add("caps not");
+		
+		tb.displayAll();
 		
 		assertEquals(tb.textsList, testList);
 	}
