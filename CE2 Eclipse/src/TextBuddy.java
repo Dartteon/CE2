@@ -19,6 +19,7 @@ public class TextBuddy{
 	private static final String MESSAGE_EMPTY = "%1s is empty";
 	private static final String MESSAGE_SHOW_LINE = "%1s. %2s";
 	private static final String MESSAGE_CLEAR_CONTENT = "all content deleted from %1s";
+	private static final String MESSAGE_INCORRECT_INPUT = "command not recognized";
 	private static final String MESSAGE_ERROR = "Caught IOException: %1s";
 	
 	//Commands user can input
@@ -28,11 +29,15 @@ public class TextBuddy{
 	private static final String COMMANDTYPE_CLEAR = "Clear";
 	private static final String COMMANDTYPE_EXIT = "Exit";
 
+	//Array positions of letters in string
 	private static final int POS_FIRST_LETTER = 0;
 	private static final int POS_SECOND_LETTER = 1;
 	
-
+	//Array to number and number to array offset
 	private static final int OFFSET_ARRAY_TO_NUM = 1;
+	
+	//Parameter to split a string input into its command and input string
+	private static final int PARAM_COMMAND_AND_STRING = 2;
 	
 	//Object variables to store user inputs and file name
 	ArrayList<String> textsList;
@@ -68,7 +73,7 @@ public class TextBuddy{
 	the first word of line. If first word is 'exit' it returns false,
 	otherwise it executes the intended command then returns true*/
 	boolean evaluateCommand(String line){
-		String lineArray[] = line.split(" ", 2);
+		String lineArray[] = line.split(" ", PARAM_COMMAND_AND_STRING);
 		String firstWord = lineArray[POS_FIRST_LETTER];
 		
 		if (firstWord.equals(COMMANDTYPE_ADD)){
@@ -91,7 +96,7 @@ public class TextBuddy{
 			return false;
 		}
 		else{
-			System.out.println("Command not recognized");
+			System.out.println(MESSAGE_INCORRECT_INPUT);
 			return true;
 		}
 	}
@@ -104,7 +109,7 @@ public class TextBuddy{
 	}
 	
 	//Method deletes string of specified index from ArrayList then saves into file
-	private void deleteLine(String line){
+	void deleteLine(String line){
 		int lineToDelete = Integer.parseInt(line) - OFFSET_ARRAY_TO_NUM;
 		String deletedLine = textsList.remove(lineToDelete);
 		System.out.println(String.format(MESSAGE_DELETED, fileName, deletedLine));
